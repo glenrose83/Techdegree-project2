@@ -4,7 +4,8 @@ session_start();
 // Include questions from the questions.php file
 include_once('inc/questions.php');
 
-$index = 2;
+$NumberOfQuestions = count($questions)-1;
+$index = rand(0,$NumberOfQuestions);
 $question = $questions[$index];
 
 $answers = array("$question[correctAnswer]",
@@ -16,8 +17,20 @@ shuffle($answers);
 
 
 // Make a variable to hold the total number of questions to ask
+$totalQuestions = count($questions); 
 
 // Make a variable to hold the toast message and set it to an empty string
+$toast = "";
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+    if ($_POST['answer'] == $questions[$_POST['index']]['correctAnswer']) {
+        $toast = "Winner Winner Chicken Dinner - Your answer is correct";
+    } else {
+        $toast = "FAIL - Wrong answer - You live you learn";
+    }
+
+}
+
 
 // Make a variable to determine if the score will be shown or not. Set it to false.
 
