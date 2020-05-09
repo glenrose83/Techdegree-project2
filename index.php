@@ -1,6 +1,6 @@
 <?php
+//Including the quiz-file so we can use the variables and it will get run by the interperter
 include_once('inc/quiz.php');
-var_dump($_SESSION['used_indexes']);
 ?>
 
 <!DOCTYPE html>
@@ -15,9 +15,13 @@ var_dump($_SESSION['used_indexes']);
 <body>
     <div class="container">
         <div id="quiz-box">
+        
         <?php 
-            if ($show_score == false) { 
-        ?>            
+        //If-statement that determines if the HTML should be shown
+        if ($show_score == false) 
+        { 
+        ?>    
+
             <p class="breadcrumbs">Question <?php echo count($_SESSION['used_indexes']) . " of " . $totalQuestions; ?></p>
             <?php if (!empty($toast)) { echo $toast; } ?>
             <p class="quiz">What is <?php echo $question['leftAdder'] . "+" . $question['rightAdder']; ?></p>
@@ -30,8 +34,10 @@ var_dump($_SESSION['used_indexes']);
              
         <?php } 
             
-            if ($show_score == true) {
-                echo "<p> You got " .  $_SESSION['totalCorrect'] . " out of " . $totalQuestions . " correct!</p>"; 
+        if ($show_score == true) {
+            echo "<p> You got " .  $_SESSION['totalCorrect'] . " out of " . $totalQuestions . " correct!</p>"; 
+            echo "<p><br></p>";
+            echo "<a href='index.php?status=restart'>Click here to restart the quiz</a>";
             } 
         ?>
         </div>
