@@ -1,8 +1,6 @@
 <?php
 include_once('inc/quiz.php');
 var_dump($_SESSION['used_indexes']);
-
-echo "number of correct " . $_SESSION['totalCorrect']; 
 ?>
 
 <!DOCTYPE html>
@@ -18,14 +16,10 @@ echo "number of correct " . $_SESSION['totalCorrect'];
     <div class="container">
         <div id="quiz-box">
         <?php 
-            if ($show_score == false)) {
-                    
+            if ($show_score == false) { 
+        ?>            
             <p class="breadcrumbs">Question <?php echo count($_SESSION['used_indexes']) . " of " . $totalQuestions; ?></p>
-            <?php 
-            if (!empty($toast)) {
-                echo $toast;
-            }
-            ?>
+            <?php if (!empty($toast)) { echo $toast; } ?>
             <p class="quiz">What is <?php echo $question['leftAdder'] . "+" . $question['rightAdder']; ?></p>
             <form action="index.php" method="post">
                 <input type="hidden" name="index" value="<?php echo $index ?>" />
@@ -34,14 +28,12 @@ echo "number of correct " . $_SESSION['totalCorrect'];
                 <input type="submit" class="btn" name="answer" value="<?php echo $answers[2] ?>" />
             </form>
              
-            } 
+        <?php } 
             
             if ($show_score == true) {
-              
-                echo "<p> You got " .  $_SESSION['totalCorrect'] . " out of " . $totalQuestions . "correct!</p>"; 
-                
+                echo "<p> You got " .  $_SESSION['totalCorrect'] . " out of " . $totalQuestions . " correct!</p>"; 
             } 
-
+        ?>
         </div>
     </div>
 </body>
